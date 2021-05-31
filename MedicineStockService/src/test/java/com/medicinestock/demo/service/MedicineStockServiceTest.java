@@ -1,0 +1,85 @@
+package com.medicinestock.demo.service;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.medicinestock.demo.model.MedicineStock;
+import com.medicinestock.demo.service.MedicineStockServiceImpl;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+public class MedicineStockServiceTest {
+	@Autowired
+	private MedicineStockServiceImpl medicineStockService;
+
+	@Mock
+	private MedicineStock medicineStock;
+	
+	@Test
+	public void testGetAllMecidineStock() {
+		log.info("testGetAllMecidineStock START");
+		List<MedicineStock> medicineList = medicineStockService.getAllMecidineStock();
+		assertNotNull(medicineList);
+		log.info("testGetAllMecidineStock END");
+	}
+	
+	@Test
+	public void testUpdateStockPositiveCase() {
+		log.info("testUpdateStockPositiveCase START");
+		boolean updateStock = medicineStockService.updateStock(1, 250);
+		assertTrue(updateStock);
+		log.info("testUpdateStockPositiveCase END");
+	}
+	@Test
+	public void testUpdateStockNegativeCase() {
+		log.info("testUpdateStockNegativeCase START");
+		boolean updateStock = medicineStockService.updateStock(-1, 250);
+		assertFalse(updateStock);
+		log.info("testUpdateStockNegativeCase END");
+	}
+	
+	@Test
+	public void testGetMedicineByAilmentPositiveCase() {
+		log.info("testGetMedicineByAilmentPositiveCase START");
+		List<MedicineStock> medicineByAilment = medicineStockService.getMedicineByAilment("General");
+		assertNotNull(medicineByAilment);
+		log.info("testGetMedicineByAilmentPositiveCase END");
+	}
+	
+	@Test
+	public void testGetMedicineByAilmentNegativeCase() {
+		log.info("testGetMedicineByAilmentNegativeCase START");
+		List<MedicineStock> medicineByAilment = medicineStockService.getMedicineByAilment("XYZ");
+		assertTrue(medicineByAilment.isEmpty());
+		log.info("testGetMedicineByAilmentNegativeCase END");
+	}
+	
+	@Test
+	public void testGetMedicineStockByMedicineNamePositiveCase() {
+		log.info("testGetMedicineStockByMedicineNamePositiveCase START");
+		MedicineStock medicineStockByMedicineName = medicineStockService.getMedicineStockByMedicineName("Crocin");
+		assertNotNull(medicineStockByMedicineName);
+		log.info("testGetMedicineStockByMedicineNamePositiveCase END");
+	}
+	@Test
+	public void testGetMedicineStockByMedicineNameNegativeCase() {
+		log.info("testGetMedicineStockByMedicineNameNegativeCase START");
+		MedicineStock medicineStockByMedicineName = medicineStockService.getMedicineStockByMedicineName("XYZ");
+		assertNull(medicineStockByMedicineName);
+		log.info("testGetMedicineStockByMedicineNameNegativeCase END");
+	}
+}

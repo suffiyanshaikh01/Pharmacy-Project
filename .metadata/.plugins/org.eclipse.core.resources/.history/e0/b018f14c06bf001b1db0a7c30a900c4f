@@ -1,0 +1,19 @@
+package com.medicineStock.demo.service;
+
+import java.util.List;
+
+import com.medicineStock.demo.model.MedicineStock;
+
+public interface MedicineStockService {
+
+	List<MedicineStock> getAllMecidineStock();
+
+	MedicineStock addMedicine(MedicineStock medicine);
+
+	String updateStock(int id, int count);
+
+	List<MedicineStock> getMedicineByAilment(String ailment);
+
+	MedicineStock getMedicineStockByMedicineName(String medicine);
+
+}

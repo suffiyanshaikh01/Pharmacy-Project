@@ -1,0 +1,140 @@
+package com.medicineStock.demo.controller;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.medicineStock.demo.model.MedicineStock;
+import com.medicineStock.demo.service.MedicineStockServiceImpl;
+
+import lombok.extern.slf4j.Slf4j;
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+@AutoConfigureMockMvc
+public class MedicineStockControllerTest {
+	
+	@InjectMocks
+	private MedicineStockController medicineStockController;
+
+	@Mock
+	private MedicineStock medicineStock;
+
+	@Mock
+	private List<MedicineStock> medicineStockList;
+
+	@Mock
+	private MedicineStockServiceImpl medicineStockService;
+	
+	private LocalDate date = LocalDate.of(2022, 9, 12);
+	
+	@Test
+	public void contextLoads() {
+		assertNotNull(medicineStockController);
+	}
+
+
+	@Before
+	public void setup() {
+		log.info("START");
+		medicineStock = new MedicineStock();
+		medicineStock.setMedicineId(1);
+		medicineStock.setMedicineName("Crocin");
+		medicineStock.setChemicalComposition("disaccharide gentiobiose, dicarboxylic acid crocetin");
+		medicineStock.setTargetAilment("General");
+		medicineStock.setGodownName("Healthy Pharmacy");
+		medicineStock.setDateOfExpiry(date);
+		medicineStock.setNumberOfTabletsInStock(200);
+		log.info("END");
+	}
+	
+	@Test
+	public void testGetMedicineStockInformationPositiveCase() throws Exception{
+		log.info("testGetMedicineStockInformation Positive START");
+		ResponseEntity<?> allMedicineStock = medicineStockController.getAllMedicineStock();
+		HttpStatus status = allMedicineStock.getStatusCode();
+		assertNotNull(status);
+		assertEquals(HttpStatus.OK, status);
+		assertNotNull(allMedicineStock.getBody());
+		log.info("testGetMedicineStockInformation Positive END");
+	}
+	@Test
+	public void testGetMedicineStockInformationNegativeCase() throws Exception{
+		log.info("testGetMedicineStockInformation Negative START");
+		ResponseEntity<?> allMedicineStock = medicineStockController.getAllMedicineStock();
+		HttpStatus status = allMedicineStock.getStatusCode();
+		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, status);
+		log.info("testGetMedicineStockInformation Negative END");
+	}
+	
+	@Test
+	public void testGetMedicineStockByMedicineNamePositiveCase() throws Exception{
+		log.info("testGetMedicineStockByMedicineNamePositiveCase START");
+		ResponseEntity<?> medicineStockByMedicineName = medicineStockController.getMedicineStockByMedicineName(medicineStock.getMedicineName());
+		HttpStatus statusCode = medicineStockByMedicineName.getStatusCode();
+		assertNotNull(statusCode);
+		assertEquals(HttpStatus.OK, statusCode);
+		assertNotNull(medicineStockByMedicineName.getBody());
+		log.info("testGetMedicineStockByMedicineNamePositiveCase END");
+	}
+	
+	@Test
+	public void testGetMedicineStockByMedicineNameNegativeCase() throws Exception{
+		log.info("getMedicineStockByMedicineNameNegativeCase START");
+		ResponseEntity<?> medicineStockByMedicineName = medicineStockController.getMedicineStockByMedicineName("ABC");
+		HttpStatus statusCode = medicineStockByMedicineName.getStatusCode();
+		assertNull(medicineStockByMedicineName.getBody());
+		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, statusCode);
+		log.info("getMedicineStockByMedicineNameNegativeCase END");
+	}
+	
+	@Test
+	public void testGetMedicineByAilmentPositiveCase() throws Exception{
+		log.info("testGetMedicineByAilmentPositiveCase START");
+		ResponseEntity<?> medicineByAilment = medicineStockController.getMedicineByAilment(medicineStock.getTargetAilment());
+		HttpStatus statusCode = medicineByAilment.getStatusCode();
+		assertNotNull(statusCode);
+		assertEquals(HttpStatus.OK, statusCode);
+		assertNotNull(medicineByAilment.getBody());
+		log.info("testGetMedicineByAilmentPositiveCase END");
+	}
+	
+	@Test
+	public void testGetMedicineByAilmentNegativeCase() throws Exception{
+		log.info("testGetMedicineByAilmentNegativeCase START");
+		ResponseEntity<String[]> medicineByAilment = (ResponseEntity<String[]>) medicineStockController.getMedicineByAilment("XYZ");
+		HttpStatus statusCode = medicineByAilment.getStatusCode();
+		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, statusCode);
+		assertEquals(medicineByAilment.getBody().length, 0);
+		log.info("testGetMedicineByAilmentNegativeCase END");
+	}
+	
+	@Test
+	public void testUpdateStockPositive() throws Exception{
+		log.info("testUpdateStockPositive START");
+		ResponseEntity<?> updateStock = medicineStockController.updateStock(1, 200);
+		log.info("testUpdateStockPositive END");
+	}
+	
+	
+	
+
+}

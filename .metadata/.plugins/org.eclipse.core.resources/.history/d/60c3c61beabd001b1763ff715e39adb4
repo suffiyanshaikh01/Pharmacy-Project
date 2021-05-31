@@ -1,0 +1,25 @@
+package com.webportal.feign;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.webportal.vomodel.MedicineDemandVO;
+import com.webportal.vomodel.PharmacyMedicineSupplyVO;
+
+
+
+@FeignClient(url = "http://localhost:8081/PharmacySupply", name = "PHARMACYSUPPLY-SERVICE")
+public interface PharmacySupplyClient {
+	
+	@PostMapping("/getAllOrders")
+	public List<PharmacyMedicineSupplyVO> getAllPharmacySupply();
+	
+	@PostMapping("")
+	public List<PharmacyMedicineSupplyVO> getPharmacySupply(@RequestBody MedicineDemandVO medDemand);
+
+}

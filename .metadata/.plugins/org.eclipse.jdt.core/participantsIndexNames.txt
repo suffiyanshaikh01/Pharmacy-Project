@@ -1,0 +1,3 @@
+INDEX VERSION 1.131
+C:\Users\suffi\Eclipse-PharmacyProjectFinal\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1447240359.index
+\PharmacyMedicineSupply-WebPortal\src\main\resources

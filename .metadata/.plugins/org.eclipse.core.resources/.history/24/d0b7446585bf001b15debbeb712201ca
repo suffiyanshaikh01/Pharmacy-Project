@@ -1,0 +1,94 @@
+package com.pharmacyMedicineSupply.demo.service;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.pharmacyMedicineSupply.demo.controller.PharmacySupplyController;
+import com.pharmacyMedicineSupply.demo.model.MedicineDemand;
+import com.pharmacyMedicineSupply.demo.model.PharmacyMedicineSupply;
+import com.pharmacyMedicineSupply.demo.vo.MedicineStockVO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
+@AutoConfigureMockMvc
+class PharmacyMedicineSuppyService {
+
+	@InjectMocks
+	PharmacyMedicineSupplyServiceImpl pharmacyService;
+	@Mock
+	MedicineDemand medDemandPositive, medDemandNegative;
+	@Mock
+	List<MedicineDemand> medDemandList;
+	@Mock
+	PharmacyMedicineSupply pharmacyMedicineSupply;
+	@Mock
+	List<PharmacyMedicineSupply> pharmacyMedicineSupplyList;
+	@Mock
+	MedicineStockVO medicineStockVO;
+	
+	@Test
+	public void contextLoads() {
+		assertNotNull(pharmacyService);
+	}
+
+	@Before
+	public void setup() {
+		log.info("START");
+		medDemandPositive.setMedicineDemandId(1);
+		medDemandPositive.setMedicineName("Crocin");
+		medDemandPositive.setDemandCount(20);
+		medDemandPositive.setStatus("");
+		medDemandNegative.setMedicineDemandId(1);
+		medDemandNegative.setMedicineName("XYZ");
+		medDemandNegative.setDemandCount(20);
+		medDemandNegative.setStatus("");
+		log.info("END");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

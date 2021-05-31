@@ -1,0 +1,29 @@
+package com.authorizationService.demo.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import com.authorizationService.demo.model.User;
+import com.authorizationService.demo.repositories.UserRepository;
+
+class UserServiceTest {
+
+	@InjectMocks
+	UserService userService;
+	@Mock
+	UserRepository userRepo;
+	
+	@Test
+	public void testGetByUserName() {
+		User u = new User(1,"Sufiyan","1234","user");
+		when( userRepo.findByUname("Sufiyan"))
+		.thenReturn(u);
+		User user = userService.getByUsername("Sufiyan");
+		assertEquals(u, user);
+	}
+	
+}

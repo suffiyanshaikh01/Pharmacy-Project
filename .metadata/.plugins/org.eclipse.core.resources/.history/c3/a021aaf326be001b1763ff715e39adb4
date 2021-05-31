@@ -1,0 +1,85 @@
+package com.medicineStock.demo.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.medicineStock.demo.exceptions.TreatingAilmentNotFoundException;
+import com.medicineStock.demo.model.MedicineStock;
+import com.medicineStock.demo.service.MedicineStockService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+@RequestMapping("/MedicineStockInformation")
+public class MedicineStockController {
+	@Autowired
+	MedicineStockService medicineService;
+	
+	@GetMapping("")
+	public List<MedicineStock> getAllMedicineStock(){
+	log.info("Start getAllMedicineStock");
+	return medicineService.getAllMecidineStock();
+	
+ }
+	@PostMapping("/addMedicine")
+	public MedicineStock addMedicine(@RequestBody MedicineStock medicine) {
+		log.info("Start addMedicine");
+		return medicineService.addMedicine(medicine);
+	}
+	
+	@PutMapping("/updateStock/{id}/{count}")
+	public String updateStock(@PathVariable int id, @PathVariable int count) {
+		log.info("Start updateStock");
+		return medicineService.updateStock(id,count);
+	}
+	
+	@GetMapping("/byTreatingAilment/{treatingAilment}")
+	public String[] getMedicineByAilment(@PathVariable("treatingAilment") String ailment){
+		log.info("Start getMedicineByAilment");
+		log.debug("Treating ailment :",ailment);
+		try {
+		List<MedicineStock> mlist = medicineService.getMedicineByAilment(ailment);
+		if(mlist.isEmpty()) {
+			throw new TreatingAilmentNotFoundException("Treating Ailment not found !!!!!!!!!!!!");
+		}
+		} catch(TreatingAilmentNotFoundException treatingAilmentNotFound) {
+			log.error(treatingAilmentNotFound.toString());
+		}
+		log.debug("Medicine List :",mlist);
+		List<String> medicineNames = new ArrayList<>();
+		for(MedicineStock m : mlist) {
+			medicineNames.add(m.getMedicineName());
+		}
+		log.debug("Medicine Names", medicineNames);
+		return medicineNames.toArray(new String[0]);
+	}
+	
+	@GetMapping("/get-stock-count/{medicine}")
+	public MedicineStock getMedicineStockByMedicineName(@PathVariable String medicine) {
+		log.info("Start getMedicineByAilment");
+		return medicineService.getMedicineStockByMedicineName(medicine);
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="PharmacyMedicineSupply-WebPortal"/>
+<aop-project name="Authorization-service"/>
+<aop-project name="MedicineStockService"/>
+<aop-project name="MedicalRepresentativeSchedule"/>
+<aop-project name="PharmacyMedicineSupply"/>
+</aop-reference-model>
