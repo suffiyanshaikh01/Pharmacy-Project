@@ -9,5 +9,10 @@ class MedicalRepresentativeScheduleApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+	
+	@Test
+	public void applicationContextTest() {
+	    MedicalRepresentativeScheduleApplication.main(new String[] {});
+	}
 
 }

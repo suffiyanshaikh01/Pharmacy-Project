@@ -1,8 +1,5 @@
 package com.medicinestock.demo.exception;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public class TreatingAilmentNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

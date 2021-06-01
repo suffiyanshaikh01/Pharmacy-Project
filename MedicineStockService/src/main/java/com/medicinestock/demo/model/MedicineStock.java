@@ -6,9 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+
 @Entity
 public class MedicineStock {
 		@Id
@@ -20,5 +23,13 @@ public class MedicineStock {
 		private LocalDate dateOfExpiry;
 		private int numberOfTabletsInStock;
 		private String godownName;
+		@Override
+		public String toString() {
+			return "MedicineStock [medicineId=" + medicineId + ", medicineName=" + medicineName
+					+ ", chemicalComposition=" + chemicalComposition + ", targetAilment=" + targetAilment
+					+ ", dateOfExpiry=" + dateOfExpiry + ", numberOfTabletsInStock=" + numberOfTabletsInStock
+					+ ", godownName=" + godownName + "]";
+		}
+		
 	
 }

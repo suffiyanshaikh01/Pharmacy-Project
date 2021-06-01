@@ -8,7 +8,6 @@ public interface MedicineStockService {
 
 	List<MedicineStock> getAllMecidineStock();
 
-	MedicineStock addMedicine(MedicineStock medicine);
 
 	boolean updateStock(int id, int count);
 

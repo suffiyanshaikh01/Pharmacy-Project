@@ -22,11 +22,7 @@ public class MedicineStockServiceImpl implements MedicineStockService {
 		return medicineRepo.findAll();
 	}
 
-	@Override
-	public MedicineStock addMedicine(MedicineStock medicine) {
-		log.info("End addMedicine");
-		return medicineRepo.save(medicine); 
-	}
+	
 
 	@Override
 	public boolean updateStock(int id, int count) {

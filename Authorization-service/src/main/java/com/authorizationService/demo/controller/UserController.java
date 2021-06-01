@@ -35,10 +35,6 @@ public class UserController {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	public String hello() {
-		return "Hello";
-	}
-	
 	@GetMapping("/")
 	public Boolean validateToken() {
 		return true;
@@ -51,7 +47,7 @@ public class UserController {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		} catch(Exception InvalidUserException) {
 			log.error(InvalidUserException.toString());
-			return null;
+			return null; 
 		}
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails);
@@ -59,12 +55,12 @@ public class UserController {
 		return token;
 	}
 
-	private void authenticate(String username, String password) throws Exception {
+	public void authenticate(String username, String password) throws Exception {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		} catch (DisabledException disabledException) {
-			throw new Exception("USER_DISABLED", disabledException);
-		} catch (BadCredentialsException badCredentialsException) {
+		} catch (DisabledException disabledException) { 
+			throw new Exception("USER_DISABLED", disabledException); 
+		} catch (BadCredentialsException badCredentialsException) {   
 			throw new Exception("INVALID_CREDENTIALS", badCredentialsException);
 		}
 	}

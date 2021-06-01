@@ -10,5 +10,10 @@ class AuthorizationApplicationTests {
 	void contextLoads() {
 		
 	}
+	
+	@Test
+	public void applicationContextTest() {
+	    AuthorizationApplication.main(new String[] {});
+	}
 
 }
