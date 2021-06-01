@@ -8251,3 +8251,5 @@ org.eclipse.core.runtime.CoreException: Launch configuration PharmacyMedicineSup
 2021-06-01 11:32:28,952 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-06-01 11:32:28,953 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2021-06-01 11:32:28,953 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-06-01 11:32:28,956 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-06-01 11:32:28,956 [Worker-26: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\suffi\OneDrive\Desktop\PharmacyMedicineSupply-WebPortal\src\test\resources
