@@ -21,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.medicinestock.demo.controller.MedicineStockController;
 import com.medicinestock.demo.model.MedicineStock;
 import com.medicinestock.demo.service.MedicineStockServiceImpl;
 
@@ -122,7 +121,7 @@ public class MedicineStockControllerTest {
 	@Test
 	public void testGetMedicineByAilmentNegativeCase() throws Exception{
 		log.info("testGetMedicineByAilmentNegativeCase START");
-		ResponseEntity<String[]> medicineByAilment = (ResponseEntity<String[]>) medicineStockController.getMedicineByAilment("XYZ");
+		ResponseEntity<String[]> medicineByAilment = medicineStockController.getMedicineByAilment("XYZ");
 		HttpStatus statusCode = medicineByAilment.getStatusCode();
 		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, statusCode);
 		assertEquals(medicineByAilment.getBody().length, 0);

@@ -3,15 +3,12 @@ package com.medicinestock.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @RequestMapping("/MedicineStockInformation")
-public class MedicineStockController {
+public class MedicineStockController { 
 	@Autowired
 	MedicineStockService medicineService;
 	
@@ -34,11 +31,6 @@ public class MedicineStockController {
 	return new ResponseEntity<>(medicineService.getAllMecidineStock(),HttpStatus.OK);
 	
  }
-//	@PostMapping("/addMedicine")
-//	public ResponseEntity<?> addMedicine(@RequestBody MedicineStock medicine) {
-//		log.info("Start addMedicine");
-//		return new ResponseEntity<>(medicineService.addMedicine(medicine),HttpStatus.OK);
-//	}
 	
 	@PutMapping("/updateStock/{id}/{count}")
 	public ResponseEntity<Boolean> updateStock(@PathVariable int id, @PathVariable int count) {
@@ -47,10 +39,10 @@ public class MedicineStockController {
 	}
 	
 	@GetMapping("/byTreatingAilment/{treatingAilment}")
-	public ResponseEntity<?> getMedicineByAilment(@PathVariable("treatingAilment") String ailment){
+	public ResponseEntity<String[]> getMedicineByAilment(@PathVariable("treatingAilment") String ailment){
 		log.info("Start getMedicineByAilment");
 		log.debug("Treating ailment :",ailment);
-		List<MedicineStock> mlist = medicineService.getMedicineByAilment(ailment);
+		List<MedicineStock> mlist = medicineService.getMedicineByAilment(ailment); 
 		try {
 		if(mlist.isEmpty()) {
 			throw new TreatingAilmentNotFoundException("Treating Ailment not found !!!!!!!!!!!!");
@@ -72,7 +64,6 @@ public class MedicineStockController {
 	@GetMapping("/get-stock-count/{medicine}")
 	public ResponseEntity<MedicineStock> getMedicineStockByMedicineName(@PathVariable String medicine) {
 		log.info("Start getMedicineByAilment");
-//		return medicineService.getMedicineStockByMedicineName(medicine);
 		return new ResponseEntity<>(medicineService.getMedicineStockByMedicineName(medicine), HttpStatus.OK);
 	}
 	

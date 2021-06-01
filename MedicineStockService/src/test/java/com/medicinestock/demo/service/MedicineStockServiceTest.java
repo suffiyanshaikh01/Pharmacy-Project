@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.medicinestock.demo.model.MedicineStock;
-import com.medicinestock.demo.service.MedicineStockServiceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,6 +1,5 @@
 package com.pharmacyMedicineSupply.demo.service;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
@@ -11,7 +10,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -35,8 +33,6 @@ class PharmacyMedicineSuppyService {
 
 	@Autowired
 	PharmacyMedicineSupplyServiceImpl pharmacyService;
-//	@InjectMocks
-//	PharmacyMedicineSupplyServiceImpl pharmacyServiceInjected;
 	
 	@Mock
 	MedicineDemand medDemandPositive, medDemandNegative;

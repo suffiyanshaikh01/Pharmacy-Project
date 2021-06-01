@@ -11,6 +11,10 @@ import com.authorizationService.demo.model.User;
 
 public class MyUserDetails implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 
 	public MyUserDetails(User u) {

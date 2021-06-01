@@ -25,7 +25,7 @@ public class MedicineStockServiceImpl implements MedicineStockService {
 	@Override
 	public MedicineStock addMedicine(MedicineStock medicine) {
 		log.info("End addMedicine");
-		return medicineRepo.save(medicine);
+		return medicineRepo.save(medicine); 
 	}
 
 	@Override
