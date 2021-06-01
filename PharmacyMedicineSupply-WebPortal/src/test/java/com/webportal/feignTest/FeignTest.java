@@ -7,10 +7,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -64,45 +62,7 @@ class FeignTest {
 	@Mock
 	UserVO user;
 
-	private LocalDate date = LocalDate.of(2022, 9, 12);
 
-	@Before
-	public void setup() {
-		log.info("START");
-		medicineStock = new MedicineStockVO();
-		medicineStock.setMedicineId(1);
-		medicineStock.setMedicineName("Crocin");
-		medicineStock.setChemicalComposition("disaccharide gentiobiose, dicarboxylic acid crocetin");
-		medicineStock.setTargetAilment("General");
-		medicineStock.setGodownName("Healthy Pharmacy");
-		medicineStock.setDateOfExpiry(date);
-		medicineStock.setNumberOfTabletsInStock(200);
-		log.info("END");
-		medDemandPositive.setMedicineName("Crocin");
-		medDemandPositive.setDemandCount(20);
-		medDemandPositive.setStatus("");
-
-		medDemandNegative.setMedicineName("XYZ");
-		medDemandNegative.setDemandCount(20);
-		medDemandNegative.setStatus("");
-		medDemandList.add(medDemandPositive);
-		medicineStockList.add(medicineStock);
-
-		pharmacyMedicineSupply.setMedicineName("Crocin");
-		pharmacyMedicineSupply.setPharmacyName("Newlife Medical");
-		pharmacyMedicineSupply.setSupplyCount(1);
-		pharmacyMedicineSupplyList.add(pharmacyMedicineSupply);
-
-		repSchedule.setRepName("Akshay");
-		repSchedule.setDocName("D1");
-		repSchedule.setTeatingAilment("General");
-		repSchedule.setMedicineName("Crocin,Dolo-650");
-		repSchedule.setSlot("1 to 2 pm");
-		repSchedule.setDate(date);
-		repSchedule.setDocContactNumber("123465789");
-		repScheduleList.add(repSchedule);
-
-	}
 
 	// MedicineStock Feign test-cases
 

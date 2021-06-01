@@ -50,8 +50,8 @@ public class WebPortalController {
 	@GetMapping("/login")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String getLoginPage(ModelMap model) {
-		
-		model.put("errorMessage",loginErrorMessage);
+
+		model.put("errorMessage", loginErrorMessage);
 		return "newLogin";
 	}
 
@@ -63,14 +63,11 @@ public class WebPortalController {
 		obj.setPassword(password);
 		obj.setUsername(userName);
 		uname = userName;
-		// System.out.println(uname);
 		model.put("username", uname);
 		token = authClient.createAuthenticationToken(obj);
 		if (token != null) {
 			token = "Bearer " + token;
-			System.out.println("RESULT : " + token);
-			System.out.println("Login Done !!!!!!!");
-			loginErrorMessage="";
+			loginErrorMessage = "";
 			return "redirect:/homepage";
 		} else {
 			loginErrorMessage = "Bad Credentials";
@@ -83,13 +80,9 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String createSchedule() {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
-					return "giveRepScheduleDate";
+			if (isValid()) {
 
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
+				return "giveRepScheduleDate";
 
 			} else {
 				throw new TokenValidationFailedException("Token is not valid");
@@ -106,9 +99,7 @@ public class WebPortalController {
 		LocalDate date = DateUtil.convertToDate(scheduleStartDate);
 		if (date.isBefore(LocalDate.now())) {
 			model.put("errorMessage", true);
-
 			return "giveRepScheduleDate";
-
 		}
 		scheduleClient.getRepSchedule(scheduleStartDate);
 		return "redirect:/schedule";
@@ -118,27 +109,21 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String schedule(ModelMap model) {
 		try {
-			if (token != null) {
+			if (isValid()) {
 
-				if (authClient.validateToken(token)) {
+				ResponseEntity<List<RepScheduleVO>> allRepSchedule = scheduleClient.getAllRepSchedule();
+				List<RepScheduleVO> scheduleList = allRepSchedule.getBody();
+				if (scheduleList.isEmpty()) {
+					model.put("createScheduleErrorMessage", "No Schedule Found");
+				} else
+					model.put("scheduleList", scheduleList);
 
-					ResponseEntity<List<RepScheduleVO>> allRepSchedule = scheduleClient.getAllRepSchedule();
-					List<RepScheduleVO> scheduleList = allRepSchedule.getBody();
-					if(scheduleList.isEmpty()) {
-						model.put("createScheduleErrorMessage","No Schedule Found");
-					}
-					else
-					    model.put("scheduleList", scheduleList);
-
-					return "repScheduleList";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+				return "repScheduleList";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
+			}
 
-		} catch (TokenValidationFailedException tokenInvalidException) {
+		} catch (TokenValidationFailedException tokenInvalidException) { 
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
 		}
@@ -149,20 +134,17 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String medicineStock(ModelMap model) {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
+			if (isValid()) {
 
-					ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
-					List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
-					model.put("medicineStockList", medicineStockList);
+				ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
+				List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
+				model.put("medicineStockList", medicineStockList);
 
-					return "medicineStockList";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+				return "medicineStockList";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
+			}
+
 		} catch (TokenValidationFailedException tokenInvalidException) {
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
@@ -173,16 +155,13 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String homepage(ModelMap model) {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
-					model.put("username", uname);
-					return "homepage";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+			if (isValid()) {
+				model.put("username", uname);
+				return "homepage";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
+			}
+
 		} catch (TokenValidationFailedException tokenInvalidException) {
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
@@ -193,20 +172,17 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String medicineDemand(ModelMap model) {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
+			if (isValid()) {
 
-					ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
-					List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
-					model.put("medicineStockList", medicineStockList);
+				ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
+				List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
+				model.put("medicineStockList", medicineStockList);
 
-					return "medicineDemand";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+				return "medicineDemand";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
+			}
+
 		} catch (TokenValidationFailedException tokenInvalidException) {
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
@@ -219,7 +195,6 @@ public class WebPortalController {
 		MedicineDemandVO demand = new MedicineDemandVO();
 		demand.setMedicineName(medicineName);
 		demand.setDemandCount(demandCount);
-		System.out.println(demand.getMedicineName() + " " + demand.getDemandCount());
 		supplyClient.getPharmacySupply(demand);
 		return "redirect:/showMedicineSupply";
 	}
@@ -228,25 +203,22 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String showMedicineSupply(ModelMap model) {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
-					ResponseEntity<List<PharmacyMedicineSupplyVO>> allPharmacySupply = supplyClient
-							.getAllPharmacySupply();
-					List<PharmacyMedicineSupplyVO> supplyList = allPharmacySupply.getBody();
-					if(supplyList.isEmpty()) {
-						model.put("supplyListError", "No orders placed yet.....!!!");
-					}
-					else
-						model.put("supplyList", supplyList);
+			if (isValid()) {
+				ResponseEntity<List<PharmacyMedicineSupplyVO>> allPharmacySupply = supplyClient.getAllPharmacySupply();
+				List<PharmacyMedicineSupplyVO> supplyList = allPharmacySupply.getBody();
+				if (supplyList.isEmpty()) {
+					model.put("supplyListError", "No orders placed yet.....!!!");
+				} else
+					model.put("supplyList", supplyList);
 
-					return "medicineSupplyList";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+				return "medicineSupplyList";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
-		} catch (TokenValidationFailedException tokenInvalidException) {
+			}
+
+		} catch (
+
+		TokenValidationFailedException tokenInvalidException) {
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
 		}
@@ -256,24 +228,22 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String showMedicineDemand(ModelMap model) {
 		try {
-			if (token != null) {
-				if (authClient.validateToken(token)) {
+			if (isValid()) {
 
-					ResponseEntity<List<MedicineDemandVO>> demandResponseEntity = supplyClient.getDemand();
-					List<MedicineDemandVO> demand = demandResponseEntity.getBody();
-					if(demand.isEmpty()) {
-						model.put("demandListError", "No orders placed yet.....!!!");
-					}
-					else
-						model.put("demandList", demand);
-					return "showMedicineDemand";
-				} else {
-					throw new TokenValidationFailedException("Token is not valid");
-				}
-
-			} else
+				ResponseEntity<List<MedicineDemandVO>> demandResponseEntity = supplyClient.getDemand();
+				List<MedicineDemandVO> demand = demandResponseEntity.getBody();
+				if (demand.isEmpty()) {
+					model.put("demandListError", "No orders placed yet.....!!!");
+				} else
+					model.put("demandList", demand);
+				return "showMedicineDemand";
+			} else {
 				throw new TokenValidationFailedException("Token is not valid");
-		} catch (TokenValidationFailedException tokenInvalidException) {
+			}
+
+		} catch (
+
+		TokenValidationFailedException tokenInvalidException) {
 			log.error(tokenInvalidException.toString());
 			return "redirect:/login";
 		}
@@ -283,9 +253,18 @@ public class WebPortalController {
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String logout() {
 		token = null;
-		return "logout";
+		return "redirect:/login";
 	}
 
+	public boolean isValid()
+	{
+		if (token != null && authClient.validateToken(token))
+			return true;
+		else {
+			return false;
+		}
+		
+	}
 	public String someFailure() {
 
 		return "error";

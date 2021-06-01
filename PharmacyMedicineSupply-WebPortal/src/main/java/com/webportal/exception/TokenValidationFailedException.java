@@ -1,8 +1,6 @@
 package com.webportal.exception;
 
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 public class TokenValidationFailedException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

@@ -222,7 +222,7 @@ body{
 		<li class="nav-item active">
 			<a href="#"> <a class="nav-link" href="#"><strong>Sufiyan</strong>&nbsp; <span class="sr-only">(current)</span></a>
 		</li>
-		<li><button class="btn btn-danger navbar-btn">Logout</button></li>
+		<li><button class="btn btn-danger navbar-btn" onclick="window.location.href='/logout'">Logout</button></li>
 	  </ul>
   </nav>
 

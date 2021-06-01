@@ -17,6 +17,8 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\suffi\OneDrive\Desktop\webPortal.zip"/>
+			<item value="C:\Users\suffi\OneDrive\Desktop\pharmacyFinal.zip"/>
 			<item value="C:\Users\suffi\OneDrive\Desktop\pharmacy.zip"/>
 		</list>
 	</section>

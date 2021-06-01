@@ -1,3 +1,7 @@
 INDEX VERSION 1.131
+C:\Users\suffi\Eclipse-PharmacyProjectFinal\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3506346452.index
+\PharmacyMedicineSupply-WebPortalOLD\src\main\resources
 C:\Users\suffi\Eclipse-PharmacyProjectFinal\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1447240359.index
+\PharmacyMedicineSupply-WebPortal\src\main\resources
+C:\Users\suffi\Eclipse-PharmacyProjectFinal\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\970534851.index
 \PharmacyMedicineSupply-WebPortal\src\main\resources
