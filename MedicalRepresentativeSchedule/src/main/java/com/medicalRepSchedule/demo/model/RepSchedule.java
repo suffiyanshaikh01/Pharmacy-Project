@@ -6,13 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
-@ToString
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RepSchedule {
+	// THIS ENTITY IS USED TO STORE THE SCHEDULES WHICH WERE CREATED
 	@Id
 	@GeneratedValue
 	private int repScheduleId;
@@ -23,5 +28,5 @@ public class RepSchedule {
 	private String slot;
 	private LocalDate date;
 	private String docContactNumber;
-	
+
 }

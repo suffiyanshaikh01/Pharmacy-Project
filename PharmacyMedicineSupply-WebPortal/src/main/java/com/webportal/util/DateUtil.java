@@ -8,24 +8,24 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DateUtil {
-
+	//CONVERTS STRING TO LOCALDATE
 	public static LocalDate convertToDate(String scheduleStartDate) {
 
 		LocalDate localDate = null;
 		try {
 
-			log.info("Start");
+			log.info("CONVERTING STRING TO LOCALDATE");
 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
 			localDate = LocalDate.parse(scheduleStartDate, formatter);
 
-			log.debug("localDate : {}", localDate);
+			log.debug("LOCALDATE : {}", localDate);
 
 		} catch (Exception e) {
-			log.error("Date Format Exception");
+			log.error("DATE FORMAT EXCEPTION");
 		}
 
-		log.info("End");
+		log.info("CONVERTED TO LOCALDATE");
 
 		return localDate;
 	}

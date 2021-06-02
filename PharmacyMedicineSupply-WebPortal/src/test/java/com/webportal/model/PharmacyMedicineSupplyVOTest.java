@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestConstructor;
 
 import com.webportal.vomodel.PharmacyMedicineSupplyVO;
 
@@ -16,6 +17,11 @@ class PharmacyMedicineSupplyVOTest {
 
 	@InjectMocks
 	PharmacyMedicineSupplyVO supplyObj;
+	
+	@Test
+	public void TestConstructor() {
+		PharmacyMedicineSupplyVO supply=new PharmacyMedicineSupplyVO("Med-Life","Dolo-650",500);
+	}
 
 	@Test
 	public void testSetMedicineNamePositiveCase() {

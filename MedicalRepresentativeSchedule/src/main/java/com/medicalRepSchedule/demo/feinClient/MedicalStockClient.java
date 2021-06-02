@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient("MEDICINESTOCK-SERVICE")
-//@FeignClient("http://MEDICINESTOCK-SERVICE/MedicineStockInformationMed")
 public interface MedicalStockClient {
-	
+	//THIS IS FEIGN CLIENT TO ACCESS DATA FROM MEDICINESTOCKSERVICE
+	//THIS METHOD PROVIDES NAME OF TABLETS ACCORDING TO THE AILMENT GIVEN
 	@GetMapping("/MedicineStockInformation/byTreatingAilment/{treatingAilment}")
 	public ResponseEntity<String[]> getMedicineByAilment(@PathVariable("treatingAilment") String ailment);
 }

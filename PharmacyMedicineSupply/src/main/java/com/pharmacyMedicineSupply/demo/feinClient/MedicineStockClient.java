@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.pharmacyMedicineSupply.demo.vo.MedicineStockVO;
 
+//using feignclient for medicine stock service
 @FeignClient("MEDICINESTOCK-SERVICE")
 public interface MedicineStockClient {
 	
+	//returns the specific stock count of medicine searched
 	@GetMapping("/MedicineStockInformation/get-stock-count/{medicine}")
 	public ResponseEntity<MedicineStockVO> getMedicineStockByMedicineName(@PathVariable String medicine);
 	
+	//updating the count of that medicine of that method where id is provided
 	@PutMapping("/MedicineStockInformation/updateStock/{id}/{count}")
 	public ResponseEntity<Boolean> updateStock(@PathVariable int id, @PathVariable int count);
 }

@@ -13,7 +13,7 @@ class MedicineStockServiceApplicationTests {
 	void contextLoads() {
 		//main test class
 	}
-	
+//	BELOW IS THE CODE TO TEST THE MAIN APPLICATION
 	@Test
 	public void applicationContextTest() {
 	    MedicineStockServiceApplication.main(new String[] {});

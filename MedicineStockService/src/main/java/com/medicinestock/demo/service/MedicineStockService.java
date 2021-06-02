@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.medicinestock.demo.model.MedicineStock;
 
+//	THIS IS MEDICINE SERVICE INTERFACE WITH CONTAINS ALL THE METHODS
 public interface MedicineStockService {
 
 	List<MedicineStock> getAllMecidineStock();

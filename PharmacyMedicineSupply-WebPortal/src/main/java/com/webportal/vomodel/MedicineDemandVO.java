@@ -1,12 +1,17 @@
 package com.webportal.vomodel;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MedicineDemandVO {
+	
+	//MEDICINE DEMAND VO
 	private String medicineName;
 	private int demandCount;
 	private String status;

@@ -18,42 +18,40 @@ import com.medicalRepSchedule.demo.util.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @RestController
 @Slf4j
 @RequestMapping("/RepSchedule")
 public class MedicalRepScheduleController {
-		
-		@Autowired
-		MedicalRepSchedulService medicalService;
-		
-		@GetMapping("")
-		public ResponseEntity<List<RepSchedule>> getAllRepSchedule(){
-			return new ResponseEntity<>(medicalService.getAllRepSchedule(),HttpStatus.OK);
+
+	@Autowired
+	MedicalRepSchedulService medicalService;
+
+	// GETTING ALL INFORMATION FROM THE REPSCHEDULE TABLE
+	@GetMapping("")
+	public ResponseEntity<List<RepSchedule>> getAllRepSchedule() {
+		log.info("GETTING SCHEDULE FROM THE DATABASE");
+		return new ResponseEntity<>(medicalService.getAllRepSchedule(), HttpStatus.OK);
+	}
+
+	// CREATING AND RETURNING SCHEDULE ACCORDING TO THE GIVEN DATE
+	@GetMapping("/{date}")
+	public ResponseEntity<List<RepSchedule>> getRepSchedule(@PathVariable("date") String inputDate)
+			throws InvalidDateException {
+
+		log.info("CREATING SCHEDULE ACCORDING T0 GIVEN DATE : " + inputDate);
+		List<RepSchedule> repSchedule = null;
+
+		// CONVERTING STRING DATE TO THE LOCALDATE FORMAT
+		LocalDate localDate = DateUtil.getDate(inputDate);
+
+		// IF USER INSERTED NULL DATE THEN EXCEPTION WILL BE THROWN
+		if (localDate == null) {
+			log.error("GIVEN DATE IS INVALID");
+			throw new InvalidDateException("Date is Invalid");
 		}
-		
-		
-		@GetMapping("/{date}")
-		public ResponseEntity<List<RepSchedule>> getRepSchedule(@PathVariable("date") String inputDate) throws InvalidDateException {
+		repSchedule = medicalService.getRepSchedule(localDate);
 
-			List<RepSchedule> repSchedule = null;
+		return new ResponseEntity<>(repSchedule, HttpStatus.OK);
 
-			LocalDate localDate = DateUtil.getDate(inputDate);
-			
-			if (localDate == null) {
-				log.error("Date is Invalid");
-				throw new InvalidDateException("Date is Invalid");
-			}
-
-			repSchedule = medicalService.getRepSchedule(localDate);
-
-			if (repSchedule.isEmpty()) {
-				System.out.println("End");
-				System.out.println("Schedule not found");
-			}
-
-
-			return new ResponseEntity<>(repSchedule, HttpStatus.OK);
-			
-		}
+	}
 }

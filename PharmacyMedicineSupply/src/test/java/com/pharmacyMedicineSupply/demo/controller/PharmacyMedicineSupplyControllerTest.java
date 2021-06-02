@@ -1,14 +1,12 @@
 package com.pharmacyMedicineSupply.demo.controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,65 +22,49 @@ import com.pharmacyMedicineSupply.demo.vo.MedicineStockVO;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-@AutoConfigureMockMvc
 public class PharmacyMedicineSupplyControllerTest {
-
+	//injecting the pharmacycontroller and mocking its rest of the services
 	@InjectMocks
 	PharmacySupplyController pharmacyController;
-	@Mock
-	MedicineDemand medDemandPositive, medDemandNegative;
+
 	@Mock
 	List<MedicineDemand> medDemandList;
 	@Mock
 	PharmacyMedicineSupply pharmacyMedicineSupply;
-	@Mock
 	List<PharmacyMedicineSupply> pharmacyMedicineSupplyList;
 	@Mock
 	MedicineStockVO medicineStock;
 	@Mock
 	PharmacyMedicineSupplyServiceImpl pharmacyService;
-	
+
 	@Test
 	public void contextLoads() {
 		assertNotNull(pharmacyController);
 	}
-
-	@Before
-	public void setup() {
-		log.info("START");
-		medDemandPositive.setMedicineDemandId(1);
-		medDemandPositive.setMedicineName("Crocin");
-		medDemandPositive.setDemandCount(20);
-		medDemandPositive.setStatus("");
-		medDemandNegative.setMedicineDemandId(1);
-		medDemandNegative.setMedicineName("XYZ");
-		medDemandNegative.setDemandCount(20);
-		medDemandNegative.setStatus("");
-		log.info("END");
-	}
-
+	//positive test case to test pharmacysupply list
 	@Test
 	public void testGetPharmacySupplyPositiveCase() {
 		log.info("testGetPharmacySupplyPositiveCase START");
+		MedicineDemand medDemandPositive = new MedicineDemand(1, "Dolo-650", 300, "Approved");
 		ResponseEntity<List<PharmacyMedicineSupply>> pharmacySupply = pharmacyController
 				.getPharmacySupply(medDemandPositive);
 		assertEquals(HttpStatus.OK, pharmacySupply.getStatusCode());
 		assertNotNull(pharmacySupply.getBody());
 		log.info("testGetPharmacySupplyPositiveCase END");
 	}
-
+	//negative test case to test pharmacysupply list
 	@Test
 	public void testGetPharmacySupplyNeagtiveCase() {
 		log.info("testGetPharmacySupplyNeagtiveCase START");
+		MedicineDemand medDemandNegative = new MedicineDemand(1, "XYZ", 300, "");
 		ResponseEntity<List<PharmacyMedicineSupply>> pharmacySupply = pharmacyController
 				.getPharmacySupply(medDemandNegative);
 		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, pharmacySupply.getStatusCode());
 		log.info("testGetPharmacySupplyNeagtiveCase END");
 	}
-	
+	//positive test case to test allpharmacysupply list
 	@Test
 	public void testGetAllPharmacySupplyPositiveCase() {
 		log.info("testGetAllPharmacySupplyPositiveCase START");
@@ -91,7 +73,7 @@ public class PharmacyMedicineSupplyControllerTest {
 		assertNotNull(allPharmacySupply.getBody());
 		log.info("testGetAllPharmacySupplyPositiveCase END");
 	}
-	
+	//negative test case to test allpharmacysupply list
 	@Test
 	public void testGetAllPharmacySupplyNegativeCase() {
 		log.info("testGetAllPharmacySupplyNegativeCase START");
@@ -99,7 +81,7 @@ public class PharmacyMedicineSupplyControllerTest {
 		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, allPharmacySupply.getStatusCode());
 		log.info("testGetAllPharmacySupplyNegativeCase END");
 	}
-	
+	//postive test case to check the demand status 
 	@Test
 	public void testGetDemandPositiveCase() {
 		log.info("testGetDemandPositiveCase START");
@@ -108,7 +90,7 @@ public class PharmacyMedicineSupplyControllerTest {
 		assertNotNull(demand.getBody());
 		log.info("testGetDemandPositiveCase END");
 	}
-	
+	//negative test case to test demand status 
 	@Test
 	public void testGetDemandNegativeCase() {
 		log.info("testGetDemandNegativeCase START");
@@ -117,21 +99,3 @@ public class PharmacyMedicineSupplyControllerTest {
 		log.info("testGetDemandNegativeCase END");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

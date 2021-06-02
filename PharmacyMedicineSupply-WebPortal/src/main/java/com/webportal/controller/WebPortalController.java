@@ -47,18 +47,22 @@ public class WebPortalController {
 	String token;
 	String loginErrorMessage;
 
+	//FOR LOADING LOGIN PAGE
 	@GetMapping("/login")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String getLoginPage(ModelMap model) {
 
+		log.info("GETTING LOGIN PAGE");
 		model.put("errorMessage", loginErrorMessage);
 		return "newLogin";
 	}
 
+	//AFTER LOGIN IF CREDENTIALS ARE CORRECT OPEN HOMEPAGE OR REDIRECT TO LOGIN
 	@PostMapping("/login")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String getLoginPage(@RequestParam String userName, @RequestParam String password, ModelMap model) {
 
+		log.info("VALIDATING USERNAME AND PASSWORD");
 		obj = new UserVO();
 		obj.setPassword(password);
 		obj.setUsername(userName);
@@ -66,25 +70,30 @@ public class WebPortalController {
 		model.put("username", uname);
 		token = authClient.createAuthenticationToken(obj);
 		if (token != null) {
+			log.info("VALID USER");
 			token = "Bearer " + token;
 			loginErrorMessage = "";
 			return "redirect:/homepage";
 		} else {
+			log.error("INVALID CREDENTIALS");
 			loginErrorMessage = "Bad Credentials";
 			return "redirect:/login";
 		}
 
 	}
 
+	//AFTER CHECKING TOKEN REDIRECT TO CREATE SCHEDULE PAGE
 	@GetMapping("/createSchedule")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String createSchedule() {
 		try {
 			if (isValid()) {
+				log.info("RETURNING GIVEREPSCHEDULE PAGE");
 
 				return "giveRepScheduleDate";
 
 			} else {
+				log.info("INVALID TOKEN");
 				throw new TokenValidationFailedException("Token is not valid");
 			}
 		} catch (TokenValidationFailedException tokenInvalidException) {
@@ -93,24 +102,29 @@ public class WebPortalController {
 		}
 	}
 
+	//CREATES SCHEDULE ACCORDING TO THE GIVEN DATE
 	@PostMapping("/createSchedule")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String getSchedule(@RequestParam String scheduleStartDate, ModelMap model) {
+		log.info("CREATING SCHEDULE");
 		LocalDate date = DateUtil.convertToDate(scheduleStartDate);
 		if (date.isBefore(LocalDate.now())) {
+			log.error("INVALID/PAST DATE");
 			model.put("errorMessage", true);
 			return "giveRepScheduleDate";
 		}
+		log.info("SCHEDULE CREATED");
 		scheduleClient.getRepSchedule(scheduleStartDate);
 		return "redirect:/schedule";
 	}
 
+	//THIS RETURNS ALL THE DATA FROM SCHEDULE TABLE
 	@GetMapping("/schedule")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String schedule(ModelMap model) {
 		try {
 			if (isValid()) {
-
+				log.info("FETCHING SCHEDULE");
 				ResponseEntity<List<RepScheduleVO>> allRepSchedule = scheduleClient.getAllRepSchedule();
 				List<RepScheduleVO> scheduleList = allRepSchedule.getBody();
 				if (scheduleList.isEmpty()) {
@@ -130,12 +144,13 @@ public class WebPortalController {
 
 	}
 
+	//THIS RETURNS AVAILABLE STOCKS IN GODOWN
 	@GetMapping("/medicineStock")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String medicineStock(ModelMap model) {
 		try {
 			if (isValid()) {
-
+				log.info("FETCHING MEDICINE STOCK");
 				ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
 				List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
 				model.put("medicineStockList", medicineStockList);
@@ -151,11 +166,14 @@ public class WebPortalController {
 		}
 	}
 
+	//AFTER CHECKING TOKEN SHOW HOMEPAGE
 	@GetMapping("/homepage")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String homepage(ModelMap model) {
 		try {
+			
 			if (isValid()) {
+				log.info("VIEWING HOMEPAGE");
 				model.put("username", uname);
 				return "homepage";
 			} else {
@@ -168,42 +186,27 @@ public class WebPortalController {
 		}
 	}
 
-	@GetMapping("/medicineDemand")
-	@HystrixCommand(fallbackMethod = "someFailure")
-	public String medicineDemand(ModelMap model) {
-		try {
-			if (isValid()) {
 
-				ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
-				List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
-				model.put("medicineStockList", medicineStockList);
-
-				return "medicineDemand";
-			} else {
-				throw new TokenValidationFailedException("Token is not valid");
-			}
-
-		} catch (TokenValidationFailedException tokenInvalidException) {
-			log.error(tokenInvalidException.toString());
-			return "redirect:/login";
-		}
-	}
-
+	//THIS METHOD PLACES ORDER
 	@PostMapping("/medicineDemand")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String medicineDemanPost(@RequestParam String medicineName, @RequestParam int demandCount, ModelMap model) {
+		log.info("PLACING ORDER");
 		MedicineDemandVO demand = new MedicineDemandVO();
 		demand.setMedicineName(medicineName);
 		demand.setDemandCount(demandCount);
 		supplyClient.getPharmacySupply(demand);
+		log.info("ORDER PROCESSED");
 		return "redirect:/showMedicineSupply";
 	}
 
+	//RETURNS PREVIOUS ORDERS
 	@GetMapping("/showMedicineSupply")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String showMedicineSupply(ModelMap model) {
 		try {
 			if (isValid()) {
+				log.info("FETCHING DATA FROM PREVIOUS ORDER");
 				ResponseEntity<List<PharmacyMedicineSupplyVO>> allPharmacySupply = supplyClient.getAllPharmacySupply();
 				List<PharmacyMedicineSupplyVO> supplyList = allPharmacySupply.getBody();
 				if (supplyList.isEmpty()) {
@@ -224,12 +227,13 @@ public class WebPortalController {
 		}
 	}
 
+	//RETURNS HISTORY OF ORDERS i.e. ACCEPTED/REJECTED
 	@GetMapping("/showMedicineDemand")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String showMedicineDemand(ModelMap model) {
 		try {
 			if (isValid()) {
-
+				log.info("FETCHING DEMAND HISTORY");
 				ResponseEntity<List<MedicineDemandVO>> demandResponseEntity = supplyClient.getDemand();
 				List<MedicineDemandVO> demand = demandResponseEntity.getBody();
 				if (demand.isEmpty()) {
@@ -249,18 +253,24 @@ public class WebPortalController {
 		}
 	}
 
+	//LOGOUT 
 	@GetMapping("/logout")
 	@HystrixCommand(fallbackMethod = "someFailure")
 	public String logout() {
+		log.info("LOGOUT");
 		token = null;
 		return "redirect:/login";
 	}
 
+	//CHECKS FOR TOKEN VALIDATION
 	public boolean isValid()
 	{
-		if (token != null && authClient.validateToken(token))
+		if (token != null && authClient.validateToken(token)) {
+			log.info("VALID TOKEN");
 			return true;
+		}
 		else {
+			log.error("INVALID TOKEN");
 			return false;
 		}
 		

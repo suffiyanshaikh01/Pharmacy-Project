@@ -13,9 +13,11 @@ import com.webportal.vomodel.RepScheduleVO;
 @FeignClient("MEDICALREPSCHEDULE-SERVICE")
 public interface MedicalRepresentativeScheduleClient {
 	
+	//GETTING ALL REPSCHEDULE
 	@GetMapping("/RepSchedule")
 	public ResponseEntity<List<RepScheduleVO>> getAllRepSchedule();
 	
+	//CREATING REPRESENTATIVE SCHEDULE
 	@GetMapping("/RepSchedule/{date}")
 	public ResponseEntity<List<RepScheduleVO>> getRepSchedule(@PathVariable("date") String inputDate);
 

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.medicinestock.demo.model.MedicineStock;
 
 @Repository
+
+//	THIS IS THE REPOSITORY FOR MEDICINE STOCK, IT INTERACTS WITH THE DATABASE TO PROVIDE THE DATA
 public interface MedicineStockRepository extends JpaRepository<MedicineStock, Integer> {
 	@Transactional
 	@Modifying

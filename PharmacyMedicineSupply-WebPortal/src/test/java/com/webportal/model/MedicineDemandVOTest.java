@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestConstructor;
 
 import com.webportal.vomodel.MedicineDemandVO;
 
@@ -15,6 +16,12 @@ class MedicineDemandVOTest {
 
 	@InjectMocks 
 	MedicineDemandVO demandObj;
+	
+	@Test
+	public void TestConstructor() {
+		MedicineDemandVO demand=new MedicineDemandVO("Crocin", 200, "Approved");
+	}
+	
 	@Test
 	public void testSetDemandCountPositiveCase() {
 		log.info("testSetDemandCountPositiveCase START");

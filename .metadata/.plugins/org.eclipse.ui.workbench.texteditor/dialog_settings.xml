@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Demo 1"/>
+		<item key="selection" value="isValid"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="IsValid"/>
 			<item value="Demo 1"/>
 			<item value="Demo 4"/>
 			<item value="Demo 3"/>
@@ -22,9 +23,9 @@
 			<item value="getAllMedicineStock"/>
 			<item value="medicinesByTreatingAilment"/>
 			<item value="getMedicineStock"/>
-			<item value="stockClient"/>
 		</list>
 		<list key="replacehistory">
+			<item value="isValid"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

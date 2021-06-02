@@ -16,12 +16,15 @@ import com.webportal.vomodel.PharmacyMedicineSupplyVO;
 @FeignClient("PHARMACYSUPPLY-SERVICE")
 public interface PharmacySupplyClient {
 	
+	//GETTING ALL ORDERS
 	@GetMapping("/PharmacySupply/getAllOrders")
 	public ResponseEntity<List<PharmacyMedicineSupplyVO>> getAllPharmacySupply();
 	
+	//PLACING ORDER
 	@PostMapping("/PharmacySupply")
 	public ResponseEntity<List<PharmacyMedicineSupplyVO>> getPharmacySupply(@RequestBody MedicineDemandVO medDemand);
 	
+	//GETTING DEMAND HISTORY
 	@GetMapping("/PharmacySupply/getDemand")
 	public ResponseEntity<List<MedicineDemandVO>> getDemand();
 

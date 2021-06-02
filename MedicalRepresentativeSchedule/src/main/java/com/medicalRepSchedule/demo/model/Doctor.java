@@ -1,16 +1,17 @@
 package com.medicalRepSchedule.demo.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
-@Data
-@ToString
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Doctor {
 
+	//THIS MODEL IS USED AS VO CLASS TO STORE DATA OD DOCTORS TEMPORARILY
 	private int docId;
 	private String docName;
 	private String docContactNumber;

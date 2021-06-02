@@ -15,6 +15,11 @@ class RepScheduleTest {
 	RepScheduleVO repSchedule;
 
 	@Test
+	public void testConstructor() {
+		RepScheduleVO schedule=new RepScheduleVO("R1","D1","General","Dolo-650,Crocin","1PM to 2PM",LocalDate.of(2021, 6, 6),"8888888888");
+	
+	}
+	@Test
 	public void testSetDatePositiveCase() {
 		log.info("testSetDatePositiveCase START");
 		LocalDate date = LocalDate.of(2021, 06, 26);

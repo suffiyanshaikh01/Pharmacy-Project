@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.medicalRepSchedule.demo.model.RepSchedule;
 
+//REPOSITORU FOR REPSCHEDULE ENTITY
 @Repository
 public interface RepSchedulRepository extends JpaRepository<RepSchedule, Integer> {
 

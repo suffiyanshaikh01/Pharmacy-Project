@@ -52,7 +52,7 @@ public class MedicineStockControllerTest {
 		assertNotNull(medicineStockController);
 	}
 
-
+	//SETTING UP EVERTHING REQUIRED BEFORE TESTING	
 	@Before
 	public void setup() {
 		log.info("START");
@@ -66,7 +66,7 @@ public class MedicineStockControllerTest {
 		medicineStock.setNumberOfTabletsInStock(200);
 		log.info("END");
 	}
-	
+//	TESTING THE getMedicineStockInformationPositiveCase
 	@Test
 	public void testGetMedicineStockInformationPositiveCase() throws Exception{
 		log.info("testGetMedicineStockInformation Positive START");
@@ -77,6 +77,7 @@ public class MedicineStockControllerTest {
 		assertNotNull(allMedicineStock.getBody());
 		log.info("testGetMedicineStockInformation Positive END");
 	}
+//	TESTING THE getMedicineStockInformationNegativeCase
 	@Test
 	public void testGetMedicineStockInformationNegativeCase() throws Exception{
 		log.info("testGetMedicineStockInformation Negative START");
@@ -85,7 +86,7 @@ public class MedicineStockControllerTest {
 		assertNotEquals(HttpStatus.INTERNAL_SERVER_ERROR, status);
 		log.info("testGetMedicineStockInformation Negative END");
 	}
-	
+//	TESTING THE GetMedicineStockByMedicineNamePositiveCase
 	@Test
 	public void testGetMedicineStockByMedicineNamePositiveCase() throws Exception{
 		log.info("testGetMedicineStockByMedicineNamePositiveCase START");
@@ -97,6 +98,7 @@ public class MedicineStockControllerTest {
 		log.info("testGetMedicineStockByMedicineNamePositiveCase END");
 	}
 	
+//	TESTING THE GetMedicineStockByMedicineNameNegativeCase	
 	@Test
 	public void testGetMedicineStockByMedicineNameNegativeCase() throws Exception{
 		log.info("getMedicineStockByMedicineNameNegativeCase START");
@@ -107,6 +109,7 @@ public class MedicineStockControllerTest {
 		log.info("getMedicineStockByMedicineNameNegativeCase END");
 	}
 	
+//	TESTING THE GetMedicineByAilmentPositiveCase		
 	@Test
 	public void testGetMedicineByAilmentPositiveCase() throws Exception{
 		log.info("testGetMedicineByAilmentPositiveCase START");
@@ -117,7 +120,7 @@ public class MedicineStockControllerTest {
 		assertNotNull(medicineByAilment.getBody());
 		log.info("testGetMedicineByAilmentPositiveCase END");
 	}
-	
+//	TESTING THE GetMedicineByAilmentNegativeCase	
 	@Test
 	public void testGetMedicineByAilmentNegativeCase() throws Exception{
 		log.info("testGetMedicineByAilmentNegativeCase START");
@@ -127,7 +130,8 @@ public class MedicineStockControllerTest {
 		assertEquals(medicineByAilment.getBody().length, 0);
 		log.info("testGetMedicineByAilmentNegativeCase END");
 	}
-	
+
+//	TESTING THE UpdateStockPositiveCase	
 	@Test
 	public void testUpdateStockPositiveCase() throws Exception{
 		log.info("testUpdateStockPositiveCase START");
@@ -135,7 +139,8 @@ public class MedicineStockControllerTest {
 		assertTrue(updateStock.getBody());
 		log.info("testUpdateStockPositiveCase END");
 	}
-	
+
+//	TESTING THE UpdateStockNegativeCase
 	@Test
 	public void testUpdateStockNegativeCase() throws Exception{
 		log.info("testUpdateStockNegativeCas START");

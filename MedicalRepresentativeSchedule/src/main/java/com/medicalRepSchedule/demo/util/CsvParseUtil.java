@@ -13,15 +13,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CsvParseUtil {
-
+	//THIS CLASS RETURNS LIST OF DOCTORS BY ACCEPTING INPUT FROM CSV FILE
 	public static List<Doctor> parseDoctors() {
-
-		log.info("Start");
+		log.info("STARTED READING CSV FILE");
 
 		final List<Doctor> doctors = new ArrayList<>();
-		
+
 		ClassLoader classLoader = CsvParseUtil.class.getClassLoader();
-		
+
 		InputStream in = classLoader.getResourceAsStream("Doctor.csv");
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in))) {
@@ -42,9 +41,9 @@ public class CsvParseUtil {
 			log.error("File not found");
 		}
 
-		log.debug("doctors : {}", doctors);
+		log.debug("DOCTORS : {}", doctors);
 
-		log.info("End");
+		log.info("STORED CSV FILE DATE IN THE LIST AND SENT BACK");
 
 		return doctors;
 	}

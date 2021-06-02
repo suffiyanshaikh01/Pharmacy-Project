@@ -13,6 +13,8 @@ import lombok.Setter;
 @Setter
 
 @Entity
+
+//		THIS IS THE MODEL CLASS FOR MEDICINE STOCK
 public class MedicineStock {
 		@Id
 		@GeneratedValue
@@ -23,13 +25,7 @@ public class MedicineStock {
 		private LocalDate dateOfExpiry;
 		private int numberOfTabletsInStock;
 		private String godownName;
-		@Override
-		public String toString() {
-			return "MedicineStock [medicineId=" + medicineId + ", medicineName=" + medicineName
-					+ ", chemicalComposition=" + chemicalComposition + ", targetAilment=" + targetAilment
-					+ ", dateOfExpiry=" + dateOfExpiry + ", numberOfTabletsInStock=" + numberOfTabletsInStock
-					+ ", godownName=" + godownName + "]";
-		}
+		
 		
 	
 }

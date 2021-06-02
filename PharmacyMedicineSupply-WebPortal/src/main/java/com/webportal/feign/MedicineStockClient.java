@@ -12,7 +12,7 @@ import com.webportal.vomodel.MedicineStockVO;
 @FeignClient("MEDICINESTOCK-SERVICE")
 public interface MedicineStockClient {
 	
-	
+	//GETTING STOCK DATA
 	@GetMapping("/MedicineStockInformation")
 	public ResponseEntity<List<MedicineStockVO>> getAllMedicineStock();
 }

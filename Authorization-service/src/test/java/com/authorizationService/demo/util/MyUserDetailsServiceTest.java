@@ -1,6 +1,6 @@
 package com.authorizationService.demo.util;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.authorizationService.demo.jwt.MyUserDetailsService;
 import com.authorizationService.demo.model.User;
 import com.authorizationService.demo.repositories.UserRepository;
-import com.authorizationService.demo.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j

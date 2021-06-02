@@ -3,11 +3,14 @@ package com.webportal.vomodel;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-@Data
-@AllArgsConstructor @NoArgsConstructor
+import lombok.Getter;
+	import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class RepScheduleVO {
+	//REPSCHEDULE VO
 	private String repName;
 	private String docName;
 	private String teatingAilment;

@@ -24,20 +24,20 @@ import lombok.extern.slf4j.Slf4j;
 public class MedicineStockController { 
 	@Autowired
 	MedicineStockService medicineService;
-	
+//	This end point is used to provide all the medicines in the stock
 	@GetMapping("")
 	public ResponseEntity<?> getAllMedicineStock(){
 	log.info("Start getAllMedicineStock");
 	return new ResponseEntity<>(medicineService.getAllMecidineStock(),HttpStatus.OK);
 	
  }
-	
+//	This end point is used to update the count of the stock
 	@PutMapping("/updateStock/{id}/{count}")
 	public ResponseEntity<Boolean> updateStock(@PathVariable int id, @PathVariable int count) {
 		log.info("Start updateStock");
 		return new ResponseEntity<>(medicineService.updateStock(id,count),HttpStatus.OK);
 	}
-	
+//	This end point is used to get the medicine by treating ailment
 	@GetMapping("/byTreatingAilment/{treatingAilment}")
 	public ResponseEntity<String[]> getMedicineByAilment(@PathVariable("treatingAilment") String ailment){
 		log.info("Start getMedicineByAilment");
@@ -60,7 +60,7 @@ public class MedicineStockController {
 		 String[] medicinesNamesArray = medicineNames.toArray(new String[0]);
 		 return new ResponseEntity<>(medicinesNamesArray,HttpStatus.OK);
 	}
-	
+//	THIS END POINT IS USED TO GET THE MEDICINE BY NAME
 	@GetMapping("/get-stock-count/{medicine}")
 	public ResponseEntity<MedicineStock> getMedicineStockByMedicineName(@PathVariable String medicine) {
 		log.info("Start getMedicineByAilment");

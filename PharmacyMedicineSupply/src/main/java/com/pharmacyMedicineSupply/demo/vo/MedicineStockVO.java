@@ -4,11 +4,14 @@ import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Data
+import lombok.Setter;
+//Value Object class for feignclient(Medicine stock service)
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class MedicineStockVO {
 
 			private int medicineId;

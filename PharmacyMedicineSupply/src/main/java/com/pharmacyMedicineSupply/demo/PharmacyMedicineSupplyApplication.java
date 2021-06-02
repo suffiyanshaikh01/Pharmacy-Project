@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients
 public class PharmacyMedicineSupplyApplication {
-
+//main method
 	public static void main(String[] args) {
 		SpringApplication.run(PharmacyMedicineSupplyApplication.class, args);
 	}

@@ -4,11 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MedicalRep {
+	// THIS ENTITY IS USED FOR STORING REPRESENTATIVE DATA
 	@Id
 	@GeneratedValue
 	private int repId;
