@@ -4,20 +4,20 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-
-@Entity
-
-//		THIS IS THE MODEL CLASS FOR MEDICINE STOCK
+@Table(name = "medicine_stock")
 public class MedicineStock {
 		@Id
-		@GeneratedValue
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int medicineId;
 		private String medicineName;
 		private String chemicalComposition;
