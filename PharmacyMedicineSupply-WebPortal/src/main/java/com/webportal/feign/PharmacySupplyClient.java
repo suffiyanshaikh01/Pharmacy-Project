@@ -13,7 +13,8 @@ import com.webportal.vomodel.PharmacyMedicineSupplyVO;
 
 
 
-@FeignClient("PHARMACYSUPPLY-SERVICE")
+//@FeignClient("PHARMACYSUPPLY-SERVICE")
+@FeignClient(url = "http://ij018pod4pharmacymedicinesupplyservi-env.eba-gt3tzpkv.us-east-2.elasticbeanstalk.com",name = "PHARMACYSUPPLY-SERVICE")
 public interface PharmacySupplyClient {
 	
 	//GETTING ALL ORDERS

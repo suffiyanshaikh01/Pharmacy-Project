@@ -42,6 +42,7 @@ public class MedicineStockController {
 	public ResponseEntity<String[]> getMedicineByAilment(@PathVariable("treatingAilment") String ailment){
 		log.info("Start getMedicineByAilment");
 		log.debug("Treating ailment :",ailment);
+		String[] medicinesNamesArray = null;
 		List<MedicineStock> mlist = medicineService.getMedicineByAilment(ailment); 
 		try {
 		if(mlist.isEmpty()) {
@@ -49,6 +50,7 @@ public class MedicineStockController {
 		}
 		} catch(TreatingAilmentNotFoundException treatingAilmentNotFound) {
 			log.error(treatingAilmentNotFound.toString());
+			return new ResponseEntity<>(medicinesNamesArray,HttpStatus.OK);
 		}
 		
 		log.debug("Medicine List :",mlist);
@@ -57,7 +59,7 @@ public class MedicineStockController {
 			medicineNames.add(m.getMedicineName());
 		}
 		log.debug("Medicine Names", medicineNames);
-		 String[] medicinesNamesArray = medicineNames.toArray(new String[0]);
+		 medicinesNamesArray = medicineNames.toArray(new String[0]);
 		 return new ResponseEntity<>(medicinesNamesArray,HttpStatus.OK);
 	}
 //	THIS END POINT IS USED TO GET THE MEDICINE BY NAME

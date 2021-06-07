@@ -203,24 +203,16 @@ body{
 <!-- NAVBAR START-->
 
 <nav class="navbar navbar-expand-lg  navbar-custom navbar-dark">
+	<kbd style="display: none;">ALT+H</kbd>
 	<a class="navbar-brand" href="#"><i class="fas fa-tablets"></i>&nbsp;  Med-life Pharmaceutical</a>
 	
 	<div class="collapse navbar-collapse" id="navbarNav">
 	  <ul class="navbar-nav">
-		<li class="nav-item active">
-		  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		</li>
-		<li class="nav-item">
-		  <a class="nav-link" href="#">About</a>
-		</li>
-		<li class="nav-item">
-		  <a class="nav-link" href="#">Terms of use</a>
-		</li>
 	  </ul>
 	</div>
 	<ul class="navbar-nav navbar-right">
 		<li class="nav-item active">
-			<a href="#"> <a class="nav-link" href="#"><strong>Sufiyan</strong>&nbsp; <span class="sr-only">(current)</span></a>
+			<a href="#"> <a class="nav-link" href="#"><strong>${username}</strong>&nbsp; <span class="sr-only">(current)</span></a>
 		</li>
 		<li><button class="btn btn-danger navbar-btn" onclick="window.location.href='/logout'">Logout</button></li>
 	  </ul>
@@ -246,7 +238,8 @@ body{
 				  Create a schedule for meeting doctors<br>
 				   from the date you want.
 				</p>
-				<button type="button" class="read_more_btn" onclick="window.location.href='/createSchedule'">Create Schedule</button>
+				<kbd style="display: none;">ALT+C</kbd>
+				<button type="button" class="read_more_btn" accesskey="c" onclick="window.location.href='/createSchedule'"><u>C</u>reate Schedule</button>
 			  </div>
 			</div>
 		  </div></div>
@@ -263,7 +256,8 @@ body{
 					  <p>
 						View all the information regarding the<br>entire stock available in all the godowns.
 					  </p>
-					  <button type="button" class="read_more_btn" onclick="window.location.href='/medicineStock'">View Inventory</button>
+					  <kbd style="display: none;">ALT+V</kbd>
+					  <button type="button" class="read_more_btn" accesskey="v" onclick="window.location.href='/medicineStock'"><u>V</u>iew Inventory</button>
 					</div>
 				  </div>
 			  </div>
@@ -282,7 +276,8 @@ body{
 						Enter the demand for the medicine you want to order.<br>
 						Check the inventory before placing the order, place order according to the stock availability.
 					  </p>
-					  <button type="button" class="read_more_btn" onclick="window.location.href='/medicineDemand'">Place Order</button>
+					  <kbd style="display: none;">ALT+P</kbd>
+					  <button type="button" class="read_more_btn" accesskey="p" onclick="window.location.href='/medicineDemand'"><u>P</u>lace Order</button>
 					</div>
 				  </div>
 			  </div>
@@ -302,7 +297,8 @@ body{
 					  <p>
 						View the schedule details for meeting the doctors.
 					  </p>
-					  <button type="button" class="read_more_btn" onclick="window.location.href='/schedule'">View Schedule</button>
+					  <kbd style="display: none;">ALT+S</kbd>
+					  <button type="button" class="read_more_btn" accesskey="s" onclick="window.location.href='/schedule'">View <u>S</u>chedule</button>
 					</div>
 				  </div>
 		  </div></div>
@@ -319,7 +315,8 @@ body{
 					  <p>
 						View history of all the orders that are placed.
 					  </p>
-					  <button type="button" class="read_more_btn" onclick="window.location.href='/showMedicineSupply'">View Placed Orders</button>
+					  <kbd style="display: none;">ALT+O</kbd>
+					  <button type="button" class="read_more_btn" accesskey="o" onclick="window.location.href='/showMedicineSupply'">View Placed <u>O</u>rders</button>
 					</div>
 				  </div>
 				</div>
@@ -337,7 +334,8 @@ body{
 					  <p>
 						View the status of orders, if they are approved or rejected.
 					  </p>
-					  <button type="button" class="read_more_btn" onclick="window.location.href='/showMedicineDemand'">View Demand Status</button>
+					  <kbd style="display: none;">ALT+SHIT+D</kbd>
+					  <button type="button" class="read_more_btn" accesskey="d" onclick="window.location.href='/showMedicineDemand'">View <u>D</u>emand Status</button>
 					</div>
 				  </div>
 			  </div>

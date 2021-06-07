@@ -102,7 +102,7 @@
   ) !important; */
 		}
 	</style>
-	<title>Cognizant Pharmacy Login</title>
+	<title>Med-life Pharmacy Login</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -115,7 +115,7 @@
 		<h1 style="font-weight: bold; margin-top: 50px;">Med-life Pharmacy</h1>
 	</div>
 	
-	<div class="container-fluid h-100 d-flex justify-content-center" style="padding-top: 5px;">
+	<div class="container-fluid d-flex justify-content-center" style="padding-top: 5px;">
 			<div class="user_card" style="margin-top: 10rem;">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
@@ -139,7 +139,7 @@
 							<p style="color: red;text-align: center;">${errorMessage}</p>
 							<div class="d-flex justify-content-center mt-3 login_container">
 							<kbd style="display: none;">ALT+S</kbd>
-				 	<button type="submit" accesskey="s" name="submit" class="btn btn-light btn-lg" style="margin-top: 25px">Login</button>
+				 	<button type="submit" accesskey="s" name="submit" class="btn btn-light btn-lg" style="margin-top: 25px"><u>L</u>ogin</button>
 				   </div>
 					</form>
 				</div>

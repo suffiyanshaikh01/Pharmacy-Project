@@ -8,8 +8,8 @@
 		<c:if test="${empty createScheduleErrorMessage}">
 		
 		<table class="table table-striped table-bordered bg-light rounded">
-			<thead class="thead-dark">
-			<tr class="text-center bg-secondary text-white"
+			<thead style="background: #233e8b;">
+			<tr class="text-center text-white"
 				style="font-size: 1.3em;	">
 				<th style="vertical-align: middle;">Representative Name</th>
 				<th style="vertical-align: middle;">Doctor name</th>

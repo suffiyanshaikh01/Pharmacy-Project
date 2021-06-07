@@ -1,7 +1,6 @@
 package com.pharmacyMedicineSupply.demo.vo;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
@@ -20,6 +19,7 @@ class MedicineStockVOTest {
 	
 	@Test
 	public void testConstructor() {
+		log.info("MedicineStockVo constructor");
 		MedicineStockVO medicineStockVO=new MedicineStockVO(1,"Crocin","disaccharide gentiobiose, dicarboxylic acid crocetin","General",LocalDate.of(2021, 6, 6),2000,"Med-Life");
 		
 	}

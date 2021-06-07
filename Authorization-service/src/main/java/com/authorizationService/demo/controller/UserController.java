@@ -1,5 +1,7 @@
 package com.authorizationService.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.authorizationService.demo.jwt.JwtRequest;
 import com.authorizationService.demo.jwt.JwtUtil;
+import com.authorizationService.demo.model.User;
+import com.authorizationService.demo.repositories.UserRepository;
 import com.authorizationService.demo.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +30,8 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-
+	@Autowired
+	UserRepository userRepo;
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -43,6 +48,7 @@ public class UserController {
 
 	@PostMapping("/getToken")
 	public String createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+		
 		try {
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 		} catch(Exception InvalidUserException) {

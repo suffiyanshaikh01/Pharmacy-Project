@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import com.pharmacyMedicineSupply.demo.vo.MedicineStockVO;
 
 //using feignclient for medicine stock service
-@FeignClient("MEDICINESTOCK-SERVICE")
+//@FeignClient("MEDICINESTOCK-SERVICE")
+@FeignClient(url="http://ij018pod4medicinestockservice-env.eba-jryu3jpu.us-east-2.elasticbeanstalk.com", name = "MEDICINESTOCK-SERVICE")
 public interface MedicineStockClient {
 	
 	//returns the specific stock count of medicine searched

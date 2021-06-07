@@ -6,8 +6,8 @@
 	<div class="container">
 		<h1 class="article-heading text-center m-4">Medicine Stock</h1>
 		<table class="table table-striped table-bordered bg-light rounded border-dark">
-				<thead class="thead-dark">
-				<tr class="text-center bg-secondary text-white" style="font-size: 1.3em;">
+				<thead style="background: #233e8b;">
+				<tr class="text-center text-white" style="font-size: 1.3em;">
 					
 					<th style="vertical-align: middle;">Id</th>
 					<th style="vertical-align: middle;">Name</th>

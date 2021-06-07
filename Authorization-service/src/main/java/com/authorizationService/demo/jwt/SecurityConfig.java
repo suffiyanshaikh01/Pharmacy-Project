@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -41,16 +42,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/login/getToken").permitAll().anyRequest()
+		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/login/getToken").permitAll().and()
+        .authorizeRequests().antMatchers("/h2-console/**").permitAll().anyRequest()
 				.authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.headers().frameOptions().disable();
 	}
 	
 //	@Override
 //	public void configure(WebSecurity web) throws Exception {
 //	    web
 //	      .ignoring()
-//	        .antMatchers("/login");
+//	        .antMatchers("/login/h2-console");
 //	   
 //	}
 

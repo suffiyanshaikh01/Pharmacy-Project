@@ -1,6 +1,6 @@
 package com.medicalRepSchedule.demo.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 

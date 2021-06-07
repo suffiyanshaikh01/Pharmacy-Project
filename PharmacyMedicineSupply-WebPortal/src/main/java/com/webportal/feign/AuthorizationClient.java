@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import com.webportal.vomodel.UserVO;
 
-@FeignClient("AUTHORIZATION-SERVICE")
+//@FeignClient("AUTHORIZATION-SERVICE")
+@FeignClient(url = "http://ij018pod4authorizationservice-env.eba-4cusmy2g.us-east-2.elasticbeanstalk.com", name = "AUTHORIZATION-SERVICE")
 public interface AuthorizationClient {
 
 	//GETTING TOKEN

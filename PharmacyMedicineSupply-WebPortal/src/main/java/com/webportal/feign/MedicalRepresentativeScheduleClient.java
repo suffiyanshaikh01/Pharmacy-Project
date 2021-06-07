@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.webportal.vomodel.RepScheduleVO;
 
 
-@FeignClient("MEDICALREPSCHEDULE-SERVICE")
+//@FeignClient("MEDICALREPSCHEDULE-SERVICE")
+@FeignClient(url = "http://ij018pod4medicinerepresentativeservi-env.eba-y2ecpdta.us-east-2.elasticbeanstalk.com",name = "MEDICALREPSCHEDULE-SERVICE")
 public interface MedicalRepresentativeScheduleClient {
 	
 	//GETTING ALL REPSCHEDULE

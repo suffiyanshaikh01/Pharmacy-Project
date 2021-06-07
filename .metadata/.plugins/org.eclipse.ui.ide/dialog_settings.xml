@@ -6,11 +6,20 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\suffi\Eclipse-PharmacyProjectFinal\PharmacyMedicineSupply-WebPortal"/>
 			<item value="C:\Users\suffi\OneDrive\Desktop\API-GATEWAYY"/>
 			<item value="C:\Users\suffi\Eclipse-PharmacyProjectFinal\PharmacyMedicineSupply"/>
 			<item value="C:\Users\suffi\Eclipse-PharmacyProjectFinal\MedicalRepresentativeSchedule"/>
 			<item value="C:\Users\suffi\OneDrive\Desktop\PharmacyMedicineSupply-WebPortal"/>
 			<item value="C:\Users\suffi\Eclipse-PharmacyProjectFinal"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="617"/>
+		<item key="DIALOG_Y_ORIGIN" value="127"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
 		</list>
 	</section>
 </section>

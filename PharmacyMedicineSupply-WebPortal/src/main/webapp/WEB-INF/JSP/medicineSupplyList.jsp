@@ -7,8 +7,8 @@
 			<p style="color: red;text-align: center;">${supplyListError}</p>
 		<c:if test="${empty supplyListError}">
 			<table class="table table-striped table-bordered bg-light rounded">
-				<thead class="thead-dark">
-				<tr class="text-center bg-secondary text-white" style="font-size: 1.3em;">
+				<thead style="background: #233e8b;">
+				<tr class="text-center  text-white" style="font-size: 1.3em;">
 				
 				
 					<th>Pharmacy Name</th>

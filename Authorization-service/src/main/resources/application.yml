@@ -1,3 +1,25 @@
+spring:
+  application:
+    name: AUTHORIZATION-SERVICE
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: h2
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:h2:mem:pharmacyProject
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+server:
+  port: 5000
+
 eureka:
   client:
     registerWithEureka: true
@@ -6,21 +28,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     hostname: localhost
-server:
-  port: 8083
-spring:
-  application:
-    name: AUTHORIZATION-SERVICE
-  jpa:    hibernate: 
-      ddl-auto: update
-    show-sql: true
-    generate-ddl: true
-  datasource:
-    
-    url: jdbc:mysql://ij018-sufiyan-mfpe.ccoanq845ewc.us-east-2.rds.amazonaws.com:3306/pharmacyProject
-    username: admin
-    password: sufiyan123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  
-
-

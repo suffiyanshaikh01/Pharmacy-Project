@@ -1,10 +1,10 @@
 package com.pharmacyMedicineSupply.demo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 //test class to test model class(PharmacyMedicineSupply)

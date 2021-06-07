@@ -104,7 +104,7 @@ public class WebPortalController {
 
 	//CREATES SCHEDULE ACCORDING TO THE GIVEN DATE
 	@PostMapping("/createSchedule")
-	@HystrixCommand(fallbackMethod = "someFailure")
+//	@HystrixCommand(fallbackMethod = "someFailure")
 	public String getSchedule(@RequestParam String scheduleStartDate, ModelMap model) {
 		log.info("CREATING SCHEDULE");
 		LocalDate date = DateUtil.convertToDate(scheduleStartDate);
@@ -186,6 +186,23 @@ public class WebPortalController {
 		}
 	}
 
+	@GetMapping("/medicineDemand")
+    @HystrixCommand(fallbackMethod = "someFailure")
+    public String medicineDemand(ModelMap model) {
+        try {
+            if (isValid()) {
+                ResponseEntity<List<MedicineStockVO>> allMedicineStock = stockClient.getAllMedicineStock();
+                List<MedicineStockVO> medicineStockList = allMedicineStock.getBody();
+                model.put("medicineStockList", medicineStockList);
+                return "medicineDemand";
+            } else {
+                throw new TokenValidationFailedException("Token is not valid");
+            }
+        } catch (TokenValidationFailedException tokenInvalidException) {
+            log.error(tokenInvalidException.toString());
+            return "redirect:/login";
+        }
+    }
 
 	//THIS METHOD PLACES ORDER
 	@PostMapping("/medicineDemand")
